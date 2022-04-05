@@ -1,0 +1,173 @@
+:root{
+    --dark: #374151;
+    --darker: #1F2937;
+    --darkest: #111827;
+    --gray: #5c626d;
+    --light: #eeeeee;
+    --lighter: #c7c5c5;
+    --lightest: #ffffff;
+    --green: #065706;
+    --blue: #0000ff;
+}
+
+*{
+    box-sizing: border-box;
+    margin: 0;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.navbar{
+    background-color: var(--darkest);
+}
+
+.navbar .container-fluid a{
+    color: var(--light);
+    font-size: 1.75rem;
+    margin: auto 7px;
+}
+
+.collapse li a{
+    color: var(--lighter) !important;
+    font-size: 1.5rem;
+}
+
+body{
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    /* height: 100%; */
+    background: var(--darker);
+    color: var(--lightest);
+}
+
+header{
+    padding: 2rem 1rem;
+    max-width: 800px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+footer{
+    margin-top: auto;
+    /* position: absolute;
+    bottom: 0; */
+    width: 100%;
+    text-align: center;
+    font-size: 1.25rem;
+    color: var(--lighter);
+    background-color: var(--darkest);
+}
+
+footer p{
+    margin: 10px auto;
+}
+
+header h1{
+    font-size: 4.5rem;
+    font-weight: 400;
+    margin-bottom: 2.5rem;
+    text-align: center;
+}
+
+main h1{
+    font-size: 3.75rem;
+    font-weight: 400;
+    margin-top: 0;
+    margin-bottom: 4.5rem;
+    text-align: center;
+    color: var(--light);
+}
+
+h2{
+    font-size: 2.7rem;
+    /* text-align: center; */
+    margin-bottom: 1.5rem;
+}
+
+.date, .time{
+    display: inline-block;
+    margin: 0 14px;
+    font-size: 1.75rem;
+    color: var(--lighter)
+}
+
+.about-text{
+    font-size: 1.5rem;
+    text-align: justify;
+    color: var(--lighter);
+    /* margin: auto auto; */
+}
+
+.mb-3{
+    text-align: center;
+    font-size: 28px;
+    padding: 5px;
+}
+
+.form-control{
+    border-radius: 1rem;
+    font-size: 18px;
+}
+
+.form-control:focus{
+    box-shadow: 0 0 0 0.25rem #ffdd7e;
+}
+
+main{
+    padding: 2rem 1rem;
+    max-width: 800px;
+    width: 100%;
+    margin: 3rem auto;
+}
+
+#toDos .toDo{
+    display: flex;
+    flex-direction: column;
+    background-color: var(--darkest);
+    padding: 1rem;
+    border-radius: 1rem;
+    margin-bottom: 1rem;
+}
+
+#toDos .toDo .toDo-list-text{
+    width: 100%;
+    color: var(--gray);
+    font-size: 1.125rem;
+    margin-bottom: 1rem;
+    display: block;
+    transition: 0.4s;
+}
+
+#toDos .toDo .toDo-list-text:not(:read-only){
+    color: var(--blue);
+}
+
+#toDos .toDo .actions{
+    display: flex;
+    margin: 0 -0.5rem;
+}
+
+.toDo .actions button{
+    margin-right: 10px;
+    font-size: 1.125rem;
+}
+
+.bottom-center {
+    margin-left: 40%;
+}
+
+/* .edit-btn-alone-center{
+    margin-left: 50%;
+} */
+
+.no-todos-to-display{
+    display: flex;
+    flex-direction: column;
+    background-color: var(--darkest);
+    color: var(--gray);
+    text-align: center;
+    font-size: 1.5rem;
+    padding: 1rem;
+    border-radius: 1rem;
+    margin-bottom: 1rem;
+}
