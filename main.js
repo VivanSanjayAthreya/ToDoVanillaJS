@@ -32,7 +32,6 @@ function addTodo(){
     toDo_title_el.value = toDo_title;
     toDo_title_el.setAttribute("readonly", "readonly");
 
-
     const toDo_content_description_el = document.createElement("div") ;
     toDo_content_description_el.classList.add("toDo-description");
     toDo_content_description_el.innerText = toDo_description;
@@ -48,7 +47,6 @@ function addTodo(){
 
     saveLocalToDos(toDo_title, toDo_description)
 
-
     const toDo_actions_el = document.createElement("div");
     toDo_actions_el.setAttribute('id','actions-btn')
     toDo_actions_el.classList.add("actions");
@@ -56,6 +54,7 @@ function addTodo(){
     const toDo_edit_el = document.createElement("button");
     toDo_edit_el.classList.add("edit", "edit-btn", "btn", "btn-secondary", "bottom-center");
     toDo_edit_el.innerHTML = "Edit";
+
     const toDo_delete_el = document.createElement("button");
     toDo_delete_el.classList.add("delete", "delete-btn", "btn", "btn-danger");
     toDo_delete_el.innerHTML = "Delete";
@@ -94,7 +93,6 @@ function addTodo(){
 
     // toDo_delete_el.addEventListener('click', () => {
     //     removeLocalTodos(toDo_delete_el, list_el, toDo_el)
-    //     console.log("hi")
     //     // list_el.removeChild(toDo_el);
     //     // removeLocalTodos(toDo_el)
     // })
@@ -119,7 +117,6 @@ function removeOrEditTodo(e){
         const delete_btn_all = document.querySelectorAll(".delete-btn");
 
         if(toDoEdit_el.innerText.toLowerCase() == "edit"){
-
             toDoTitle_el.removeAttribute("readonly")
             toDoDescription_el.removeAttribute("readonly")
 
@@ -131,7 +128,6 @@ function removeOrEditTodo(e){
 
             edit_btn_all.forEach(function(item){
                 if (item !== toDoEdit_el){
-                    console.log(item)
                     item.style.display = "none";
                 }
             })
@@ -139,30 +135,28 @@ function removeOrEditTodo(e){
                 item.style.display = "none";
             })
             // toDoDelete_el.style.display = "none";
-
             let todos = checkExistingTodos()
             window.todoEditIndex = getIndexofTodo(todos, todo)
         }
 
         else{
-                toDoTitle_el.setAttribute("readonly", "readonly");
-                toDoDescription_el.setAttribute("readonly", "readonly");
+            toDoTitle_el.setAttribute("readonly", "readonly");
+            toDoDescription_el.setAttribute("readonly", "readonly");
 
-                toDoEdit_el.classList.add("edit-btn")
-                toDoEdit_el.classList.remove("mx-auto", "btn-lg", "btn-success")
-                toDoEdit_el.innerText = "Edit"
+            toDoEdit_el.classList.add("edit-btn")
+            toDoEdit_el.classList.remove("mx-auto", "btn-lg", "btn-success")
+            toDoEdit_el.innerText = "Edit"
 
-                edit_btn_all.forEach(function(item){
-                    if (item !== toDoEdit_el){
-                        console.log(item)
-                        item.style.display = "";
-                    }
-                })
-                delete_btn_all.forEach(function(item){
+            edit_btn_all.forEach(function(item){
+                if (item !== toDoEdit_el){
                     item.style.display = "";
-                })
-                // toDoDelete_el.style.display = "";
-                editLocalTodos(todo, todoEditIndex)
+                }
+            })
+            delete_btn_all.forEach(function(item){
+                item.style.display = "";
+            })
+            // toDoDelete_el.style.display = "";
+            editLocalTodos(todo, todoEditIndex)
         }
     } 
 }
@@ -188,8 +182,23 @@ function NoTodosToDisplay(){
 function saveLocalToDos(todo_title, todo_desc){
     todos = checkExistingTodos()
     todos.push([todo_title, todo_desc])
-    // console.log(todos)
     localStorage.setItem('todos', JSON.stringify(todos))
+}
+
+function getIndexofTodo(todos, todo){
+    const todoTitle = todo.children[0].value;
+    for(let i=0; i < todos.length; i++){
+        let todoItem = todos[i];
+        for(let j=0; j< todoItem.length; j++){
+            if (todoTitle == todoItem[j]){
+                return (i)                
+            }
+        }
+        if(todos.length == 0){
+            NoTodosToDisplay();
+            break;
+        }
+    }
 }
 
 function getTodos(){
@@ -272,30 +281,11 @@ function getTodos(){
 //     })
 // }
 
-function getIndexofTodo(todos, todo){
-    const todoTitle = todo.children[0].value;
-    for(let i=0; i < todos.length; i++){
-        let todoItem = todos[i];
-        for(let j=0; j< todoItem.length; j++){
-            if (todoTitle == todoItem[j]){
-                // console.log(i)
-                return (i)                
-            }
-        }
-        if(todos.length == 0){
-            NoTodosToDisplay();
-            break;
-        }
-    }
-}
-
 function editLocalTodos(todo, todoEditIndex){
     let todos = checkExistingTodos()
     const toDoTitle_el = todo.children[0];
     const toDoDescription_el = todo.children[1];
-    console.log(todoEditIndex)
     todos.splice(todoEditIndex, 1, [toDoTitle_el.value, toDoDescription_el.value]);
-    console.log(todos)
     localStorage.setItem("todos", JSON.stringify(todos));
 }
 
@@ -303,7 +293,6 @@ function removeLocalTodos(todo){
     let todos = checkExistingTodos()
     todoIndex = getIndexofTodo(todos, todo)
     todos.splice(todoIndex, 1);
-    console.log(todos)
     localStorage.setItem("todos", JSON.stringify(todos));
     if(todos.length == 0){
         NoTodosToDisplay();
